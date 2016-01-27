@@ -1,0 +1,15 @@
+public class House{ //klassens namn
+private int yearBuilt; //instansvariabler	
+private int size; //instansvariabler
+private final int minSize = 10; //instansvariabler
+public House(int yearBuilt,int size){ //diverse kod  //Konstruktor
+}
+public int getYearBuilt(){ //instansmetoder
+//diverse kod }
+public int getSize(){ //diverse kod  //instansmetoder
+} }
+
+
+d) en final-deklarerad klass kan inte ärvas och en final-deklarerad metod kan inte ersättas i subklasser. Metoder som är deklarerade private eller static blir också final.
+e) Private kan bara nås inom klassen medan public kan hämtas från alla klasser.
+f) 

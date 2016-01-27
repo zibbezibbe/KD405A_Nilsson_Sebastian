@@ -115,7 +115,7 @@ public class Main extends JFrame {
 		
 		JTextArea txtrAdamKuzi = new JTextArea();
 		txtrAdamKuzi.setEditable(false);
-		txtrAdamKuzi.setText("Adam kuzi\nBrunki Muzi\nSunki Druzi\nK3 Larra\nC3 Larra\nBörje Surström\nDisco Bursörj\nSisko Lökstam\nYvor Klunk\nAsp Berger\nSörje Sunk\nDonald Trumpet\nArnold Svarnold\nKonrad Svisk\nElvis Brosk\nRönke Kask\nOrvar Sörensko\nPerko Pisk");
+		txtrAdamKuzi.setText("Adam kuzi\nBrunki Muzi\nSunki Druzi\nSvunki Mafruzi\nKuzi Muzisson\nBörje Surström\nDisco Bursörj\nSisko Lökstam\nYvor Klunk\nAspe Berger\nSörje Sunk\nMögli Bork\nRoy Stork\nKonrad Svisk\nElvis Brosk\nRönke Kask\nOrvar Sörensko\nPerko Pisk\nÅslög Degko");
 		scrollPane.setViewportView(txtrAdamKuzi);
 		
 		txtElvisBrosk = new JTextField();
@@ -171,6 +171,7 @@ public class Main extends JFrame {
 		textField_4.setColumns(10);
 		
 		txtAdress = new JTextField();
+		txtAdress.setEditable(false);
 		txtAdress.setBorder(null);
 		txtAdress.setText("Namn:");
 		txtAdress.setBounds(353, 86, 75, 20);
@@ -178,6 +179,7 @@ public class Main extends JFrame {
 		txtAdress.setColumns(10);
 		
 		txtPersonnummer = new JTextField();
+		txtPersonnummer.setEditable(false);
 		txtPersonnummer.setText("Adress:");
 		txtPersonnummer.setColumns(10);
 		txtPersonnummer.setBorder(null);
@@ -185,6 +187,7 @@ public class Main extends JFrame {
 		contentPane.add(txtPersonnummer);
 		
 		txtEmail = new JTextField();
+		txtEmail.setEditable(false);
 		txtEmail.setText("Ort:");
 		txtEmail.setColumns(10);
 		txtEmail.setBorder(null);
@@ -192,6 +195,7 @@ public class Main extends JFrame {
 		contentPane.add(txtEmail);
 		
 		txtTelefon = new JTextField();
+		txtTelefon.setEditable(false);
 		txtTelefon.setText("E-mail:");
 		txtTelefon.setColumns(10);
 		txtTelefon.setBorder(null);
@@ -199,6 +203,7 @@ public class Main extends JFrame {
 		contentPane.add(txtTelefon);
 		
 		txtTelefon_1 = new JTextField();
+		txtTelefon_1.setEditable(false);
 		txtTelefon_1.setText("Telefon:");
 		txtTelefon_1.setColumns(10);
 		txtTelefon_1.setBorder(null);

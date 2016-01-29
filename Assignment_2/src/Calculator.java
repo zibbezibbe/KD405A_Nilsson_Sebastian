@@ -28,7 +28,7 @@ public class Calculator {
 		return this.operand;	
 	}
 	
-	/**buttonpress*/ 
+	// buttonpress 
 	public void numberButtonPressed(int number){
 	  this.operand = this.operand*10 + number;
 	}

@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -14,7 +15,7 @@ import java.awt.event.ActionEvent;
 
 public class CalculatorGUI extends JFrame {
 	
-	private Calculator calculator = new Calculator();
+	Calculator calculator = new Calculator();
 	
 	
 

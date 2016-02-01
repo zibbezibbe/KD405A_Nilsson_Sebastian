@@ -64,14 +64,14 @@ public class HouseGUI extends JFrame {
 		House myHouse2 = new House(1850, 900);
 		House myHouse3 = new House(1970, 300);
 		
-		textArea.append("House 1 is built " + myHouse1.getYearBuilt() + " and is " + myHouse1.getSize() + " kvadratmeter stort" + "\n");
-		textArea.append("House 2 is built " + myHouse2.getYearBuilt() + " and is " + myHouse2.getSize() + " kvadratmeter stort" + "\n");
-		textArea.append("House 3 is built " + myHouse3.getYearBuilt() + " and is " + myHouse3.getSize() + " kvadratmeter stort" + "\n");
+		textArea.append("House 1 is built " + myHouse1.getYear() + " and is " + myHouse1.getSize() + " kvadratmeter stort" + "\n");
+		textArea.append("House 2 is built " + myHouse2.getYear() + " and is " + myHouse2.getSize() + " kvadratmeter stort" + "\n");
+		textArea.append("House 3 is built " + myHouse3.getYear() + " and is " + myHouse3.getSize() + " kvadratmeter stort" + "\n");
 		
 		System.out.println("Uppgift 1.2");
-		System.out.println("House 1 is built " + myHouse1.getYearBuilt() + " and is " + myHouse1.getSize() + " kvadratmeter stort");
-		System.out.println("House 2 is built " + myHouse2.getYearBuilt() + " and is " + myHouse2.getSize() + " kvadratmeter stort");
-		System.out.println("House 3 is built " + myHouse3.getYearBuilt() + " and is " + myHouse3.getSize() + " kvadratmeter stort");
+		System.out.println("House 1 is built " + myHouse1.getYear() + " and is " + myHouse1.getSize() + " kvadratmeter stort");
+		System.out.println("House 2 is built " + myHouse2.getYear() + " and is " + myHouse2.getSize() + " kvadratmeter stort");
+		System.out.println("House 3 is built " + myHouse3.getYear() + " and is " + myHouse3.getSize() + " kvadratmeter stort");
 		
 		
 		textArea.append("Uppgift 1.3" + "\n");
@@ -90,8 +90,8 @@ public class HouseGUI extends JFrame {
 		myHouses[9] = new House(2000, 100);
 		
 		for(int i=0; i <10; i++){
-			textArea.append("House " + (i+1) + " is built " + myHouses[i].getYearBuilt() + " and is " + myHouses[i].getSize() + " kvadratmeter stort" + "\n");
-			System.out.println("House " + (i+1) + " is built " + myHouses[i].getYearBuilt() + " and is " + myHouses[i].getSize() + " kvadratmeter stort" + "\n");
+			textArea.append("House " + (i+1) + " is built " + myHouses[i].getYear() + " and is " + myHouses[i].getSize() + " kvadratmeter stort" + "\n");
+			System.out.println("House " + (i+1) + " is built " + myHouses[i].getYear() + " and is " + myHouses[i].getSize() + " kvadratmeter stort" + "\n");
 		}
 		
 		textArea.append("Uppgift 1.4" + "\n");
@@ -100,13 +100,13 @@ public class HouseGUI extends JFrame {
 		
 		for(int i =0; i <100; i++){
 			
-			randomYear = random.nextInt(House.getMaxYearBuilt() - House.getMinYearBuilt() + 1) + House.getMinYearBuilt();
+			randomYear = random.nextInt(House.getMaxYear() - House.getMinYear() + 1) + House.getMinYear();
 			randomSize = random.nextInt(House.getMaxSize() - House.getMinSize() + 1) + House.getMinSize();
 			
 			houselist.add(new House(randomYear, randomSize));
 			
-			System.out.println(houselist.get(i).getYearBuilt() + "\t" + (houselist.get(i).getSize()));
-			textArea.append("House " + (i+1) + " is built " + houselist.get(i).getYearBuilt() + " and is " + houselist.get(i).getSize() + " kvm " + "\n");
+			System.out.println(houselist.get(i).getYear() + "\t" + (houselist.get(i).getSize()));
+			textArea.append("House " + (i+1) + " is built " + houselist.get(i).getYear() + " and is " + houselist.get(i).getSize() + " kvm " + "\n");
 			
 		}
 		

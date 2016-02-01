@@ -1,10 +1,10 @@
 public class House{
-private int yearBuilt;
+private int year;
 private int size;
 private static int minSize = 10;
 private static int maxSize = 1000;
-private static int minYearBuilt = 1800;
-private static int maxYearBuilt = 2005;
+private static int minYear = 1800;
+private static int maxYear = 2005;
 
 public House(int setYearBuilt,int setSize){
 	if (setSize < minSize) {
@@ -16,20 +16,20 @@ public House(int setYearBuilt,int setSize){
 	}else{
 		size = setSize;
 	}
-	if (setYearBuilt < minYearBuilt){
-		yearBuilt = minYearBuilt+1;
+	if (setYearBuilt < minYear){
+		year = minYear+1;
 		
-	}else if (setSize > maxYearBuilt){
-		yearBuilt = maxYearBuilt-1;
+	}else if (setSize > maxYear){
+		year = maxYear-1;
 		
 	}else{
-		yearBuilt = setYearBuilt;
+		year = setYearBuilt;
 	}
 
 }
 
-public int getYearBuilt(){
-	return this.yearBuilt;
+public int getYear(){
+	return this.year;
 }
 public int getSize(){
 	return this.size;
@@ -43,11 +43,11 @@ public static int getMaxSize(){
 	return maxSize;
 }
 
-public static int getMinYearBuilt(){
-	return minYearBuilt;
+public static int getMinYear(){
+	return minYear;
 }
 
-public static int getMaxYearBuilt(){
-	return maxYearBuilt;
+public static int getMaxYear(){
+	return maxYear;
 }
 }

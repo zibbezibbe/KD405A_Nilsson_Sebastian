@@ -18,7 +18,6 @@ import java.awt.event.ActionEvent;
 public class DigitalClockGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JLabel txtAlarmClock;
 	private JLabel txtHour;
 	private JLabel txtMinute;
 	private JTextField HourField;
@@ -52,18 +51,13 @@ public class DigitalClockGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public DigitalClockGUI() {
+		setTitle("AlarmClock");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		txtAlarmClock = new JLabel();
-		txtAlarmClock.setFont(new Font("Lucida Grande", Font.BOLD, 16));
-		txtAlarmClock.setText("ALARM CLOCK");
-		txtAlarmClock.setBounds(162, 6, 130, 26);
-		contentPane.add(txtAlarmClock);
 		
 		txtHour = new JLabel();
 		txtHour.setText("Hour");
@@ -85,7 +79,7 @@ public class DigitalClockGUI extends JFrame {
 		MinuteField.setBounds(80, 232, 83, 26);
 		contentPane.add(MinuteField);
 	
-		
+		//sätter alarmet, hämtar texten i minut och timfältet
 		JButton AlarmButton = new JButton("Set Alarm");
 		AlarmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -107,6 +101,7 @@ public class DigitalClockGUI extends JFrame {
 		AlarmButton.setBounds(187, 185, 117, 73);
 		contentPane.add(AlarmButton);
 		
+		//nollställer alarmet
 		JButton ClearButton = new JButton("Clear Alarm");
 		ClearButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,19 +130,23 @@ public class DigitalClockGUI extends JFrame {
 		alarmMessage.setBounds(265, 123, 168, 16);
 		contentPane.add(alarmMessage);
 		
+		//skapar en ny instans av clocklogic
 		clockLogic = new ClockLogic(this);
 		
 	}
 	
+	//sätter tiden i klockfältet
 	public void setTimeOnLabel(String time){
 		currentTime.setText(time);
 		
 	}
 	
+	//sätter alarmet i alarmfältet
 	public void setAlarmOnLabel(String alarmTime){
 		alarmLabel.setText(alarmTime);
 	}
 	
+	//skriver ut en text när alarmet går
 	public void activateAlarm(boolean activate) {
 		if(activate)
 		{

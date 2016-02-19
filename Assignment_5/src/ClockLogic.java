@@ -1,15 +1,17 @@
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ClockLogic  {
 
+	//variabler
 	private Calendar cal = Calendar.getInstance();
 	private DigitalClockGUI clockGUI;
 	private int alarmHour;
 	private int alarmMinutes;
 	private ClockThread Thread;
 	
-	
+	//konstruktor
 	public ClockLogic(DigitalClockGUI digitalClockGUI) {
 		this.clockGUI = digitalClockGUI;
 		
@@ -17,7 +19,7 @@ public class ClockLogic  {
 	}
 		
 	
-	
+	//metod för att sätta alarmet
 	public void setAlarm(int hours, int minutes){
 		
 		
@@ -39,10 +41,12 @@ public class ClockLogic  {
 		
 		if((alarmHour >= 0) && (alarmMinutes >= 0))
 		{
+			//lägger till decimal, tar bort alarmtiden när alarmet nollställs
+        	DecimalFormat decimalFormat = new DecimalFormat("00");
 			
 			
 
-			clockGUI.setAlarmOnLabel("" + hours + ":" + minutes);
+			clockGUI.setAlarmOnLabel("" + decimalFormat.format(hours) + ":" + decimalFormat.format(minutes));
 		}
 		else
 		{
@@ -52,7 +56,7 @@ public class ClockLogic  {
 		
 	}
 	
-	
+	//nollställer alarmet
 	public void clearAlarm(){
 		
         setAlarm(-1, -1);
@@ -60,11 +64,13 @@ public class ClockLogic  {
 		clockGUI.activateAlarm(false);
 	}
 	
-	
+	//kör klockan så att den inte står stilla
 	private class ClockThread extends Thread{
 				
 		        @Override
 				public void run(){
+		        	
+		        	DecimalFormat decimalFormat = new DecimalFormat("00");
 						
 						while(true) {
 							
@@ -74,9 +80,9 @@ public class ClockLogic  {
 						int minute = cal.get(Calendar.MINUTE);
 						int hour = cal.get(Calendar.HOUR_OF_DAY);
 						
-						clockGUI.setTimeOnLabel("" + hour + ":" + minute + ":" + second);
+						clockGUI.setTimeOnLabel("" + decimalFormat.format(hour) + ":" +decimalFormat.format(minute) + ":" + decimalFormat.format(second));
 						
-						
+						//aktiverar alarmet
 						if((hour == alarmHour && minute == alarmMinutes)) {
 							
 							clockGUI.activateAlarm(true);

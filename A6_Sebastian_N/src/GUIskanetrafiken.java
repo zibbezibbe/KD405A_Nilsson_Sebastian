@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+
 import se.mah.k3lara.skaneAPI.control.Constants;
 import se.mah.k3lara.skaneAPI.model.Journey;
 import se.mah.k3lara.skaneAPI.model.Journeys;
@@ -31,10 +32,11 @@ public class GUIskanetrafiken extends JFrame {
 	private JTextField textTo;
 	private JLabel txtResaFrn;
 	private JLabel txtResaTill;
-	private JButton btnNewButton;
 	private JLabel lblResultatResml;
 	private JTextArea resultField2;
 	private JScrollPane scrollPane;
+	ArrayList<Station> searchStations = new ArrayList<Station>();
+	private JTextArea resultField;
 	private JScrollPane scrollPane_1;
 
 	/**
@@ -79,29 +81,13 @@ public class GUIskanetrafiken extends JFrame {
 		txtResultat.setBounds(0, 349, 130, 26);
 		contentPane.add(txtResultat);
 		
-		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(108, 314, 409, 77);
-		contentPane.add(scrollPane_1);
-		
-		final JTextArea resultField = new JTextArea();
-		scrollPane_1.setViewportView(resultField);
-		resultField.setEditable(false);
-		
 		JButton searchButton = new JButton("sök hållplats");
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Clear result.
-				 resultField.setText("");
-				 
-				 // Create a list for holding Stations. 
-				ArrayList<Station> searchStations = new ArrayList<Station>(); 
-				 
-				 // Search for all stations that contains the value of txtSearch and add the to the list searchStations.
-				 searchStations.addAll(Parser.getStationsFromURL(searchField.getText().trim()));
-				 for (Station s: searchStations){
-				 resultField.append(s.getStationName() +" number:" + s.getStationNbr() + 
-				 " longitude: " + s.getLongitude() + " latitude: " + s.getLatitude() + "\n");
-				 }
+				
+				resultField.setText("searching...");
+				
+				new getStations().start();
 				 }
 				 	});
 			
@@ -130,36 +116,14 @@ public class GUIskanetrafiken extends JFrame {
 		txtResaTill.setBounds(222, 41, 130, 26);
 		contentPane.add(txtResaTill);
 		
-		btnNewButton = new JButton("sök resa");
+		JButton btnNewButton = new JButton("sök resa");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Clear result.
-				 resultField2.setText("");
-				 				
-				 // Create a list for holding Stations. 
-				 ArrayList<Station> searchStations = new ArrayList<Station>();
-				 
-				 // Find station numbers.
-				 String fromNbr = "80000";
-				 String toNbr = "81216";
-				 // Search for all stations that contains the value of txtSearch and add the to the list searchStations.
-				 searchStations.addAll(Parser.getStationsFromURL(textFrom.getText().trim()));
-				 for (Station s: searchStations){
-				 // Find station number.
-				 }
-				 
-				 // Construct the query URL for searching.
-				 String searchURL = Constants.getURL(fromNbr, toNbr, 1);
-				 
-				 // Call the Skanetrafiken API with the constructed query URL to retrieve a list of available journeys.
-				 Journeys journeys = Parser.getJourneys(searchURL);
-				 
-				 for (Journey journey : journeys.getJourneys()) {
-				 resultField2.append(journey.getStartStation().toString() + " - ");
-				 resultField2.append(journey.getEndStation().toString());
-				 String time = journey.getDepDateTime().get(Calendar.HOUR_OF_DAY) + ":" + journey.getDepDateTime().get(Calendar.MINUTE);
-				 resultField2.append(" Departs " + time + " that is in " + journey.getTimeToDeparture() + " minutes. And it is " + journey.getDepTimeDeviation() + " min late\n");
-				 				} 
+				
+				resultField2.setText("searching...");
+				
+				
+				new getJourney().start(); 
 				 			}
 				 		});
 			
@@ -179,7 +143,83 @@ public class GUIskanetrafiken extends JFrame {
 		scrollPane.setViewportView(resultField2);
 		resultField2.setEditable(false);
 		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(108, 318, 405, 73);
+		contentPane.add(scrollPane_1);
+		
+		resultField = new JTextArea();
+		scrollPane_1.setViewportView(resultField);
+		resultField.setEditable(false);
+		
+		
 		
 	}
+		
+		
+		
+		public class getStations extends Thread{
+			
+			@Override
+			public void run(){
+				
+				
+				
+				
+				 
+				 // söker efter alla stationer som innehåller värdet av det som finns i searchField och lägger till i listan searchStations
+				 searchStations.addAll(Parser.getStationsFromURL(searchField.getText()));
+				 resultField.setText(" ");
+				 for (Station s: searchStations){
+				 resultField.append(s.getStationName() +" number:" + s.getStationNbr() + 
+				 " longitude: " + s.getLongitude() + " latitude: " + s.getLatitude() + "\n");
+				 }
+				
+				
+			}
+		
+		
+	}
+		
+         public class getJourney extends Thread{
+			
+			@Override
+			public void run(){
+				
+				
+				
+				 // hitta stationsnummer
+				 String fromNumber = textFrom.getText();
+				 String toNumber = textTo.getText();
+				 
+				 // söka från alla ställen med koden som finns i textFrom och hämta det i stationslistan
+				 searchStations.addAll(Parser.getStationsFromURL(textFrom.getText()));
+				 resultField2.setText(" ");
+				 for (Station s: searchStations){
+				 
+				 }
+				 
+				 // Skapa URL för att söka
+				 String searchURL = Constants.getURL(fromNumber, toNumber, 1);
+				 
+				 // kalla på skånetrafikens api med den konstruerade url listan och lägga till det i resultatfältet.
+				 Journeys journeys = Parser.getJourneys(searchURL);
+				 
+				 for (Journey journey : journeys.getJourneys()) {
+					 
+				 resultField2.append(journey.getStartStation().toString() + " - ");
+				 resultField2.append(journey.getEndStation().toString());
+				 String time = journey.getDepDateTime().get(Calendar.HOUR_OF_DAY) + ":" + journey.getDepDateTime().get(Calendar.MINUTE);
+				 resultField2.append(" Departs " + time + " that is in " + journey.getTimeToDeparture() + " minutes. And it is " + journey.getDepTimeDeviation() + " min late\n");
+				 				
+				 
+				 }
+				
+				
+				
+			}	
+			
+		}
 
 }
+
+
